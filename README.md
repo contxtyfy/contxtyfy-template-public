@@ -1,6 +1,8 @@
 # Contxtyfy — your AI chief of staff, on Railway
 
-[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/contxtyfy)
+[![Deploy on Railway](https://railway.com/button.svg)](https://railway.com/deploy/contxtyfy-command-centre)
+
+Live on the Railway marketplace as [**Contxtyfy Command Centre**](https://railway.com/template/contxtyfy-command-centre) (first published edition: v0.2.0, 2026-08-11).
 
 Contxtyfy is a private, single-tenant **GTD command centre + knowledge graph**
 run by supervised AI agents:
@@ -24,7 +26,7 @@ lives on your Railway volume.
 
 ## Quickstart
 
-1. Click **Deploy on Railway** — two services come up (Command Centre + Neo4j).
+1. Click **Deploy on Railway** above (template `contxtyfy-command-centre`) — two services come up (Command Centre + Neo4j, each with a persistent volume, on a private network).
 2. Open the Command Centre URL → you land on `/setup`. Enter the
    `CC_SETUP_TOKEN` shown in your Railway service variables.
 3. Walk the wizard: password → accounts → model key → Composio OAuth →
