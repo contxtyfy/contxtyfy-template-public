@@ -4,6 +4,13 @@ All notable changes to the Contxtyfy Railway template.
 Updating: redeploy the Command Centre service in Railway — the template's
 `stable` image tag always points at the latest release below.
 
+## 0.2.1 — 2026-08-11
+
+- Composio provisioning no longer fails outright when a toolkit's auth config
+  cannot be auto-created (e.g. Xero, which needs custom OAuth credentials).
+  The toolkit is dropped with a warning and re-joins automatically on the next
+  provision after you add an auth config in the Composio dashboard.
+
 ## 0.2.0 — 2026-08-11
 
 First published edition. Free-model resilience for zero-credit OpenRouter
