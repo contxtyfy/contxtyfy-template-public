@@ -4,6 +4,35 @@ All notable changes to the Contxtyfy Railway template.
 Updating: redeploy the Command Centre service in Railway — the template's
 `stable` image tag always points at the latest release below.
 
+## 0.3.0 — 2026-08-17
+
+**Fixes a bug that could throw away work your agents had already done.** If any
+third-party tool call returned HTTP 403 — an expired accounting or storage
+connection was enough — the run was classified as an authentication failure and
+stopped, even though it had finished its work and written its files. The stage
+then exited non-zero and took the following stage down with it. In the reference
+deployment this discarded five consecutive days of completed cycles while every
+cycle wrote its summary normally, and the knowledge graph stopped advancing.
+Upgrade if you run scheduled cycles.
+
+- A failed tool result no longer counts as a failure of the run. The scan now
+  matches the Composio result envelope rather than the word "Error:", so real
+  provider failures are still caught and retried.
+- A run that exits cleanly and produces the output it promised is a success,
+  whatever its transcript contains.
+- A run that produced real output is no longer recorded as failed. Its own log
+  does not count as output.
+- A successful run no longer carries a failure class.
+- Failure decisions now log the line that caused them, so a wrong one can be
+  traced without reading the whole transcript.
+
+**Xero is removed.** The `/webhooks/xero` receiver, the `XERO_WEBHOOKS_KEY`
+setting and the setup-wizard field are gone, and Xero is no longer requested as
+a Composio toolkit. `POST /webhooks/composio` is now the only inbound receiver.
+If you set `XERO_WEBHOOKS_KEY`, it is ignored — no other action is needed.
+
+Slack alerting is unchanged.
+
 ## 0.2.1 — 2026-08-11
 
 - Composio provisioning no longer fails outright when a toolkit's auth config
